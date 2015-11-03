@@ -1,0 +1,1693 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BestCS.HtmlEditor</name>
+    </assembly>
+    <members>
+        <member name="T:BestCS.HtmlEditor.EditHtmlForm">
+            <summary>
+            Form used to Edit or View Html contents
+            If a property RedOnly is true contents are considered viewable
+            No Html parsing is performed on the resultant data
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.EditHtmlForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EditHtmlForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EditHtmlForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EditHtmlForm.#ctor">
+            <summary>
+            Public Form constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EditHtmlForm.SetCaption(System.String)">
+            <summary>
+            Property to modify the caption of the display
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EditHtmlForm.HTML">
+            <summary>
+            Property to set and get the HTML contents
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EditHtmlForm.ReadOnly">
+            <summary>
+            Property that determines if the html is editable
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.EnterHrefForm">
+            <summary>
+            Form used to enter an Html Anchor attribute
+            Consists of Href, Text and Target Frame
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.EnterHrefForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterHrefForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterHrefForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterHrefForm.#ctor">
+            <summary>
+            Public form constructor
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterHrefForm.HrefText">
+            <summary>
+            Property for the text to display
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterHrefForm.HrefTarget">
+            <summary>
+            Property for the href target
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterHrefForm.HrefLink">
+            <summary>
+            Property for the href for the text
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.EnterImageForm">
+            <summary>
+            Form used to enter an Html Image attribute
+            Consists of Href, Text and Image Alignment
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.EnterImageForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterImageForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterImageForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.EnterImageForm.#ctor">
+            <summary>
+            Public form constructor
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterImageForm.ImageText">
+            <summary>
+            Property for the text to display
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterImageForm.ImageLink">
+            <summary>
+            Property for the href for the image
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.EnterImageForm.ImageAlign">
+            <summary>
+            Property for the image align
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.FindReplaceForm">
+            <summary>
+            Form designed to control Найти и Заменить operations
+            Найти и Заменить operations performed by the user control class
+            Delegates need to be defined to reference the class instances
+            </summary> 
+        </member>
+        <member name="F:BestCS.HtmlEditor.FindReplaceForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.#ctor(System.String,BestCS.HtmlEditor.FindReplaceResetDelegate,BestCS.HtmlEditor.FindFirstDelegate,BestCS.HtmlEditor.FindNextDelegate,BestCS.HtmlEditor.FindReplaceOneDelegate,BestCS.HtmlEditor.FindReplaceAllDelegate)">
+            <summary>
+            Public constructor that defines the required delegates
+            Delegates must be defined for the find and replace to operate
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.DefineFindWindow(System.Boolean)">
+            <summary>
+            Setup the properties based on the find or repalce functionality
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.DefineOptionsWindow(System.Boolean)">
+            <summary>
+            Defines if the options dialog is shown
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.bOptions_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event defining the visibility of the options
+            Based on the user clicking the options button
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.tabControl_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Event setting the state of the form
+            Based on the user clicking a new form tab
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.bReplace_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event replacing a single occurrence of a given text with another
+            Based on the user clicking the replace button
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.bReplaceAll_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event replacing all the occurrences of a given text with another
+            Based on the user clicking the replace all button
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.bFindNext_Click(System.Object,System.EventArgs)">
+            <summary>
+            Event finding the next occurrences of a given text
+            Based on the user clicking the find next button
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.textFind_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Once the text has been changed reset the ranges to be worked with
+            Initially defined by the set in the constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.textReplace_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Once the text has been changed reset the ranges to be worked with
+            Initially defined by the set in the constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FindReplaceForm.ResetTextState">
+            <summary>
+            Sets the form state based on user input for Replace
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.FontAttributeForm">
+            <summary>
+            Form used to enter an Html Font attribute
+            Input based on the HtmlFontAttribute struct
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.FontAttributeForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.#ctor">
+            <summary>
+            Public form constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.LoadFonts">
+            <summary>
+            Loads into the list of font names a series of font objects
+            These represent the available fonts
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.FontSelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Event handler for all functions that affect font sample
+            Font name list and checkboxes for bold, itaic, underline
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.FontAttributeForm.SetFontTextSample">
+            <summary>
+            Sets the sample font text based on the user selection
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.FontAttributeForm.HtmlFont">
+            <summary>
+            Property to define the Font attribute for the text
+            Uses the HtmlFontProperty class
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.TablePropertyForm">
+            <summary>
+            Form used to enter an Html Table structure
+            Input based on the HtmlTableProperty struct
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.TablePropertyForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.TablePropertyForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.TablePropertyForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.TablePropertyForm.#ctor">
+            <summary>
+            Default form constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.TablePropertyForm.MeasurementOptionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Property for the measurement values based on the selected mesaurment
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.TablePropertyForm.TableProperties">
+            <summary>
+            Property definition for the Table Properties
+            Uses the HtmlTableProperty class definition
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlEditorControl">
+            <summary>
+            This is the main UserControl class that defines the Html Editor
+            BodyHtml sets the complet Body including the body tag
+            InnerText and InnerHtml sets the contents of the Body
+            Property ReadOnly defines whether the content is editable
+            </summary>
+        </member>
+        <member name="F:BestCS.HtmlEditor.HtmlEditorControl.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.#ctor">
+            <summary>
+            Private control constructor defining all default values
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DefineBodyAttributes">
+            <summary>
+            Defines all the body attributes once a document has been loaded
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DocumentContextMenu(System.Object,System.Windows.Forms.HtmlElementEventArgs)">
+            <summary>
+            Method to perform the process of showing the context menus
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DocumentSelectionChange(System.Object,System.EventArgs)">
+            <summary>
+            Method to perform the process of selection change
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DocumentKeyPress(System.Object,System.EventArgs)">
+            <summary>
+            Method to perform the process of key being pressed
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.BrowserCodeNavigate(System.String)">
+            <summary>
+            Method used to navigate to the required page
+            Call made sync using a loading variable
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.BrowserBeforeNavigate(System.Object,System.Windows.Forms.WebBrowserNavigatingEventArgs)">
+            <summary>
+            Event can be used to canel the navigation and open a new window
+            If window set to same then nothing happens
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.OnHtmlNavigation(BestCS.HtmlEditor.HtmlNavigationEventArgs)">
+            <summary>
+            Processing for the HtmlNavigation event
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.BrowserDocumentComplete(System.Object,System.Windows.Forms.WebBrowserDocumentCompletedEventArgs)">
+            <summary>
+            Document complete method for the web browser
+            Initiated by navigating to the about:blank page (EMPTY_PARAMETER HTML document)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.Focus">
+            <summary>
+            Create a new focus method that ensure the body gets the focus
+            Should be called when text processing command are called
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ShouldSerializeBackColor">
+            <summary>
+            Determines if the property should be serialized
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ResetBackColor">
+            <summary>
+            Resets the property
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.NavigateToUrl(System.String)">
+            <summary>
+            Method to allow the user to load a document by navigation
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.NavigateToUrl(System.String,System.Boolean)">
+            <summary>
+            Method to allow the user to load a document by navigation
+            A new window can optionally be specified
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.LoadFromUrl(System.String)">
+            <summary>
+            Method to allow the user to load a document from a Url
+            The body tag is used and loaded
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.LoadFromFile(System.String)">
+            <summary>
+            Method to allow a user to load a file given a file name
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.OpenFilePrompt">
+            <summary>
+            Method to allow the user to select a file and read the contents into the Html stream
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.SaveFilePrompt">
+            <summary>
+            Method to allow the user to persist the Html stream to a file
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.HtmlContentsEdit">
+            <summary>
+            Method to allow the user to edit the raw HTML
+            Dialog presented and the body contents set
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.HtmlContentsView">
+            <summary>
+            Method to allow the user to view the html contents
+            The complete Html markup is presented
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DocumentPrint">
+            <summary>
+            Method to print the html text using the document print command
+            Print preview is not supported
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ToggleOverWrite">
+            <summary>
+            Method to toggle the overwrite mode
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextCut">
+            <summary>
+            Method to cut the currently selected text to the clipboard
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextCopy">
+            <summary>
+            Method to copy the currently selected text to the clipboard
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextPaste">
+            <summary>
+            Method to paste the currently selected text from the clipboard
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextDelete">
+            <summary>
+            Method to delete the currently selected text from the screen
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextSelectAll">
+            <summary>
+            Method to select the entire document contents
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TextClearSelect">
+            <summary>
+            Method to clear the document selection
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.EditUndo">
+            <summary>
+            Method to undo former commands
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.EditRedo">
+            <summary>
+            Method to redo former undo
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatSelectionChange">
+            <summary>
+            Ensures the toolbar is correctly displaying state
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontName(System.String)">
+            <summary>
+            Method using the document to set the font name
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontSize(BestCS.HtmlEditor.HtmlFontSize)">
+            <summary>
+            Method using the document to set the Html font size
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatBold">
+            <summary>
+            Method using the document to toggle the selection with a bold tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatUnderline">
+            <summary>
+            Method using the document to toggle the selection with a underline tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatItalic">
+            <summary>
+            Method using the document to toggle the selection with a italic tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatSubscript">
+            <summary>
+            Method using the document to toggle the selection with a Subscript tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatSuperscript">
+            <summary>
+            Method using the document to toggle the selection with a Superscript tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatStrikeout">
+            <summary>
+            Method using the document to toggle the selection with a Strikeout tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontIncrease">
+            <summary>
+            Method to increase the size of the font by 1 point
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontDecrease">
+            <summary>
+            Method to decrease the size of the font by 1 point
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontChange(System.Int32)">
+            <summary>
+            Method given a int value increase the font size by that amount
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatRemove">
+            <summary>
+            Method to remove any formatting tags
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatTabRight">
+            <summary>
+            Method to Tab the current line to the right
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatTabLeft">
+            <summary>
+            Method to Tab the current line to the left
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatList(BestCS.HtmlEditor.HtmlListType)">
+            <summary>
+            Method to insert an ordered or unordered list
+            </summary>
+            <param name="listtype"></param>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.JustifyLeft">
+            <summary>
+            Method to define the font justification as LEFT
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.JustifyCenter">
+            <summary>
+            Method to define the font justification as CENTER
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.JustifyRight">
+            <summary>
+            Method to define the font justification as Right
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertLine">
+            <summary>
+            Method to insert a horizontal line in the body
+            If have a control range rather than text range one could overwrite the controls with the line
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertImage(System.String)">
+            <summary>
+            Method to insert an image tag at the selected location
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertImagePrompt">
+            <summary>
+            Method to insert a image and prompt a user for the link
+            Calls the public InsertImage method
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertLink(System.String)">
+            <summary>
+            Method to create a web link from the users selected text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertLinkPrompt">
+            <summary>
+            Method to insert a link and prompt a user for the href
+            Calls the public InsertLink method
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.RemoveLink">
+            <summary>
+            Method to remove a web link from the users selected text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertStyleSource(System.String)">
+            <summary>
+            Method to insert the style source into the document
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertScriptSource(System.String)">
+            <summary>
+            Method to insert the script source into the document
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertHtmlPrompt">
+            <summary>
+            Method to insert the given HTML into the selected range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertTextPrompt">
+            <summary>
+            Method to insert the given Text into the selected range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetFormatBlockCommands">
+            <summary>
+            Method to return the acceptable values for the format block
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertFormatBlock(System.String)">
+            <summary>
+            Method to format the selected text by wrapping in the given format tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertFormattedBlock">
+            <summary>
+            Method to format the selected text by wrapping in a PRE tag for direct editing
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertNormalBlock">
+            <summary>
+            Method to unformat the selected text by removing heading and pre tags
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.InsertHeading(BestCS.HtmlEditor.HtmlHeadingType)">
+            <summary>
+            Method to insert a heading tag values being Heading 1,2,3,4,5
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.SystemInsertImage">
+            <summary>
+            Method to allow the insertion of an image using the system dialogs
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.SystemInsertLink">
+            <summary>
+            Method to allow the insertion of an href using the system dialogs
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontAttributes(BestCS.HtmlEditor.HtmlFontProperty)">
+            <summary>
+            Method using the exec command that defines the font properties for the selected text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontColor(System.Drawing.Color)">
+            <summary>
+            Method using the exec command to define the color properties for the selected tag
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontAttributesPrompt">
+            <summary>
+            Method to display the defined font dialog
+            Use to set the selected text Font
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FormatFontColorPrompt">
+            <summary>
+            Method to display the system color dialog
+            Use use to set the selected text Color
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetFontAttributes">
+            <summary>
+            Method to determine the Font of the selected text range
+            Returns the default value of not defined if not Text selected
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontBold(mshtml.IHTMLTxtRange)">
+            <summary>
+            DetermineS if the current font selected is bold when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontBold">
+            <summary>
+            Determines if the current font selected is bold when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontUnderline(mshtml.IHTMLTxtRange)">
+            <summary>
+            Determines if the current font selected is Underline when given a range
+            </summary>
+            <param name="range"></param>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontUnderline">
+            <summary>
+            Determines if the current font selected is Underline
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontItalic(mshtml.IHTMLTxtRange)">
+            <summary>
+            Determines if the current font selected is Italic when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontItalic">
+            <summary>
+            Determines if the current font selected is Italic
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontStrikeout(mshtml.IHTMLTxtRange)">
+            <summary>
+            Determines if the current font selected is Strikeout when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontStrikeout">
+            <summary>
+            Determines if the current font selected is Strikeout
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontSuperscript(mshtml.IHTMLTxtRange)">
+            <summary>
+            Determines if the current font selected is Superscript when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontSuperscript">
+            <summary>
+            Determines if the current font selected is Superscript
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontSubscript(mshtml.IHTMLTxtRange)">
+            <summary>
+            Determines if the current font selected is Subscript when given a range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsFontSubscript">
+            <summary>
+            Determines if the current font selected is Subscript
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetFontColor">
+            <summary>
+            Determines the color of the selected text range
+            Returns default value if not text selected
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplacePrompt">
+            <summary>
+            Dialog to allow the user to perform a find and replace
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplaceReset">
+            <summary>
+            Method to reset the find and replace options to initialize a new search
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindFirst(System.String)">
+            <summary>
+            Method to find the first occurrence of the given text string
+            Uses false case for the search options
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindFirst(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Method to find the first occurrence of the given text string
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindNext(System.String)">
+            <summary>
+            Method to find the next occurrence of a given text string
+            Assumes a previous search was made
+            Uses false case for the search options
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindNext(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Method to find the next occurrence of a given text string
+            Assumes a previous search was made
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplaceOne(System.String,System.String)">
+            <summary>
+            Replace the first occurrence of the given string with the other
+            Uses false case for the search options
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplaceOne(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Method to replace the first occurrence of the given string with the other
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplaceAll(System.String,System.String)">
+            <summary>
+            Method to replace all the occurrence of the given string with the other
+            Uses false case for the search options
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindReplaceAll(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Method to replace all the occurrences of the given string with the other
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.FindText(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Method to perform the actual find of the given text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableInsert(BestCS.HtmlEditor.HtmlTableProperty)">
+            <summary>
+            Method to create a table class
+            Insert method then works on this table
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableModify(BestCS.HtmlEditor.HtmlTableProperty)">
+            <summary>
+            Method to modify a tables properties
+            Ensure a table is currently selected or insertion point is within a table
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableInsertPrompt">
+            <summary>
+            Method to present to the user the table properties dialog
+            Uses all the default properties for the table based on an insert operation
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableModifyPrompt">
+            <summary>
+            Method to present to the user the table properties dialog
+            Ensure a table is currently selected or insertion point is within a table
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableInsertRow">
+            <summary>
+            Method to insert a new row into the table
+            Based on the current user row and insertion after
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TableDeleteRow">
+            <summary>
+            Method to delete the currently selected row
+            Operation based on the current user row location
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ProcessTablePrompt(mshtml.IHTMLTable)">
+            <summary>
+            Method to present to the user the table properties dialog
+            Uses all the default properties for the table based on an insert operation
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ProcessTable(mshtml.IHTMLTable,BestCS.HtmlEditor.HtmlTableProperty)">
+            <summary>
+            Method to insert a basic table
+            Will honour the existing table if passed in
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetTableElement(mshtml.IHTMLTable@,mshtml.IHTMLTableRow@)">
+            <summary>
+            Method to determine if the current selection is a table
+            If found will return the table element
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetTableElement">
+            <summary>
+            Method to return the currently selected Html Table Element
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetTableProperties(mshtml.IHTMLTable)">
+            <summary>
+            Given an Html Table Element determines the table properties
+            Returns the properties as an HtmlTableProperty class
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetTableDefinition(BestCS.HtmlEditor.HtmlTableProperty@,System.Boolean@)">
+            <summary>
+            Method to return  a table defintion based on the user selection
+            If table selected (or insertion point within table) returns these values
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsParentTable">
+            <summary>
+            Method to determine if the insertion point or selection is a table
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandQuery(System.String)">
+            <summary>
+            Performs a query of the command state
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandQuery(mshtml.IHTMLTxtRange,System.String)">
+            <summary>
+            Executes the queryCommandState on the selected range (given the range)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandRange(System.String,System.Object)">
+            <summary>
+            Executes the execCommand on the selected range
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandRange(mshtml.IHTMLTxtRange,System.String,System.Object)">
+            <summary>
+            Executes the execCommand on the selected range (given the range)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandDocument(System.String)">
+            <summary>
+            Executes the execCommand on the document
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandDocumentPrompt(System.String)">
+            <summary>
+            Executes the execCommand on the document with a system prompt
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ExecuteCommandDocument(System.String,System.Boolean)">
+            <summary>
+            Executes the execCommand on the document with a system prompt
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.QueryCommandRange(System.String)">
+            <summary>
+            Determines the value of the command
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.QueryCommandRange(mshtml.IHTMLTxtRange,System.String)">
+            <summary>
+            Determines the value of the command
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetTextRange">
+            <summary>
+            Gets the selected Html Range Element
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetFirstControl">
+            <summary>
+            Gets the first selected Html Control as an Element
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.GetAllControls">
+            <summary>
+            Gets all the selected Html Controls as a Control Range
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TryParseByte(System.String,System.Byte)">
+            <summary>
+            Method to perform a parse of a string into a byte number
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TryParseUshort(System.String,System.UInt16)">
+            <summary>
+            Method to perform a parse of a string into a ushort number
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.TryParseEnum(System.Type,System.String,System.Object)">
+            <summary>
+            Method to perform a parse of the string into an enum
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.DefineDialogProperties(System.Windows.Forms.Form)">
+            <summary>
+            Method to ensure dialog resembles the user form characteristics
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsValidHref(System.String)">
+            <summary>
+            Method to determine if a string url is valid
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.IsStringEqual(System.String,System.String)">
+            <summary>
+            Method to determine if the tag name is of the correct type
+            A string comparision is made whilst ignoring case
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.RebaseAnchorUrl">
+            <summary>
+            Method to remove references to about:blank from the anchors
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.browserPanelResize(System.Object,System.EventArgs)">
+            <summary>
+            Control the sizing of the browser control
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.SetBrowserPanelSize">
+            <summary>
+            Method to perform the sizing of the control panel
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.toolstripEditorClick(System.Object,System.EventArgs)">
+            <summary>
+            General Tool Strip processing method
+            Calls the ProcessCommand with the selected command Tag Text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.contextEditorClick(System.Object,System.EventArgs)">
+            <summary>
+            General Context Meun processing method
+            Calls the ProcessCommand with the selected command Tag Text
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ProcessCommand(System.String)">
+            <summary>
+            Method to process the toolbar command and handle error exception
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.ProcessFormatBlock(System.String)">
+            <summary>
+            Method to process the format block command and handle error exception
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorControl.OnHtmlException(BestCS.HtmlEditor.HtmlExceptionEventArgs)">
+            <summary>
+            Method to raise an event if a delegeate is assigned for handling exceptions
+            </summary>
+        </member>
+        <member name="E:BestCS.HtmlEditor.HtmlEditorControl.HtmlException">
+            <summary>
+            Public event that is raised if an internal processing exception is found
+            </summary>
+        </member>
+        <member name="E:BestCS.HtmlEditor.HtmlEditorControl.HtmlNavigation">
+            <summary>
+            Public event that is raised if navigation event is captured
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BackColor">
+            <summary>
+            Defines the base back color of the control
+            Will override the base back color to alter the default
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BorderSize">
+            <summary>
+            Property defining the width of the controls border
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.ScrollBars">
+            <summary>
+            Property defining whether scroll bars should be displayed
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.AutoWordWrap">
+            <summary>
+            Property defining whether words will be auto wrapped
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.NavigateAction">
+            <summary>
+            Property defining the default action when a user click on a link
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.ReadOnly">
+            <summary>
+            Property defining the editable status of the text
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.ToolbarVisible">
+            <summary>
+            Property defining the visibility of the defined toolbar
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.ToolbarDock">
+            <summary>
+            Property defining the visibility of the defined toolbar
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.InnerText">
+            <summary>
+            Property defining the base text for the body
+            The HTML value can be used at runtime
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.InnerHtml">
+            <summary>
+            Property defining the HTML value for the body contents
+            It is this value that gets serialized by the designer
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BodyHtml">
+            <summary>
+            Property defining the body tag of the html
+            On set operation the body attributes are redefined
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.DocumentHtml">
+            <summary>
+            Property defining the Html tag of the document
+            Should never be set as contains the HEAD tag
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.SelectedText">
+            <summary>
+            Property defining the Text selected by the user
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.SelectedHtml">
+            <summary>
+            Property defining the Html selected by the user
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.DocumentUrl">
+            <summary>
+            Property returning any Url that was used to load the current document
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BodyBackColor">
+            <summary>
+            Property for the body background color
+            Reset and Serialize values defined
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BodyForeColor">
+            <summary>
+            Property for the body fore color
+            Reset and Serialize values defined
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.BodyFont">
+            <summary>
+            Property for the base font to use for text editing
+            Reset and Serialize values defined
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.StylesheetUrl">
+            <summary>
+            Property defining the style sheet to be used for editing
+            Can be used for standard templates
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorControl.ScriptSource">
+            <summary>
+            Property defining a script element that is to be used by all documents
+            Can be used for document processing
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlNavigationEventArgs">
+            <summary>
+            On a user initiated navigation create an event with the following EventArgs
+            User can set the cancel property to cancel the navigation
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlNavigationEventArgs.#ctor(System.String)">
+            <summary>
+            Constructor for event args
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlNavigationEventArgs.Url">
+            <summary>
+            Property for the Form Url
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlNavigationEventArgs.Cancel">
+            <summary>
+            Defintion of the cancel property
+            Also allows a set operation
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlEditorException">
+            <summary>
+            Exception class for HtmlEditor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorException.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorException.#ctor(System.String)">
+            <summary>
+            Constructor accepting a single string message
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor accepting a string message and an inner exception
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorException.#ctor(System.String,System.String)">
+            <summary>
+            Constructor accepting a single string message and an operation name
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlEditorException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Constructor accepting a string message an operation and an inner exception
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlEditorException.Operation">
+            <summary>
+            Property for the operation name
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlExceptionEventArgs">
+            <summary>
+            Defintion of the Event Arguement for an Html Exception
+            If capturing an exception internally throw an event with the following EventArgs
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlExceptionEventArgs.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor for event args
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlExceptionEventArgs.Operation">
+            <summary>
+            Property for the operation name
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlExceptionEventArgs.ExceptionObject">
+            <summary>
+            Property for the Exception for which the event is being raised
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlListType">
+            <summary>
+            Enum used to insert a list
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlHeadingType">
+            <summary>
+            Enum used to insert a heading
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.NavigateActionOption">
+            <summary>
+            Enum used to define the navigate action on a user clicking a href
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.ImageAlignOption">
+            <summary>
+            Enum used to define the image align property
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HorizontalAlignOption">
+            <summary>
+            Enum used to define the text alignment property
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.VerticalAlignOption">
+            <summary>
+            Enum used to define the vertical alignment property
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.DisplayScrollBarOption">
+            <summary>
+            Enum used to define the visibility of the scroll bars
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.MeasurementOption">
+            <summary>
+            Enum used to define the unit of measure for a value
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlFontSize">
+            <summary>
+            Enum used to modify the font size
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlFontProperty">
+            <summary>
+            Struct used to define a Html Font
+            Supports Name Size Bold Italic Subscript Superscript Strikeout
+            Specialized TypeConvertor used for Designer Support
+            If Name is Empty or Null Struct is consider Null
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.#ctor(System.String)">
+            <summary>
+            Public constrctor for name only
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.#ctor(System.String,BestCS.HtmlEditor.HtmlFontSize)">
+            <summary>
+            Public constrctor for name and size only
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.#ctor(System.String,BestCS.HtmlEditor.HtmlFontSize,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Public constrctor for all standard attributes
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.#ctor(System.String,BestCS.HtmlEditor.HtmlFontSize,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Public constrctor for all attributes
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.#ctor(System.Drawing.Font)">
+            <summary>
+            Public constructor given a system Font
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.ToString">
+            <summary>
+            Public method to convert the html into a readable format
+            Used by the designer to display the font name
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.IsEqual(BestCS.HtmlEditor.HtmlFontProperty,BestCS.HtmlEditor.HtmlFontProperty)">
+            <summary>
+            Compares two Html Fonts for equality
+            Equality opertors not defined (Design Time issue with override of Equals)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.IsNotEqual(BestCS.HtmlEditor.HtmlFontProperty,BestCS.HtmlEditor.HtmlFontProperty)">
+            <summary>
+            Compares two Html Fonts for equality
+            Equality opertors not defined (Design Time issue with override of Equals)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.IsNull(BestCS.HtmlEditor.HtmlFontProperty)">
+            <summary>
+            Based on a font name being null the font can be assumed to be null
+            Default constructor will give a null object
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontProperty.IsNotNull(BestCS.HtmlEditor.HtmlFontProperty)">
+            <summary>
+            Based on a font name being null the font can be assumed to be null
+            Default constructor will give a null object
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Name">
+            <summary>
+            Property for the Name of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Size">
+            <summary>
+            Property for the Size of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Bold">
+            <summary>
+            Property for the Bold Indication of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Italic">
+            <summary>
+            Property for the Italics Indication of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Underline">
+            <summary>
+            Property for the Underline Indication of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Strikeout">
+            <summary>
+            Property for the Strikeout Indication of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Subscript">
+            <summary>
+            Property for the Subscript Indication of the Font
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.HtmlFontProperty.Superscript">
+            <summary>
+            Property for the Superscript Indication of the Font
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlFontConversion">
+            <summary>
+            Utility Class to perform Font Attribute conversions
+            Takes data to and from the expected Html Format
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.HtmlFontSizeString(BestCS.HtmlEditor.HtmlFontSize)">
+            <summary>
+            Returns the correct string size description from a HtmlFontSize
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.HtmlFontBoldString(System.Boolean)">
+            <summary>
+            Returns the correct bold description for the bold attribute
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.HtmlFontItalicString(System.Boolean)">
+            <summary>
+            Returns the correct bold description for the bold attribute
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.FontSizeToHtml(System.Single)">
+            <summary>
+            Determines the font size given a selected font in points
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.FontSizeFromHtml(BestCS.HtmlEditor.HtmlFontSize)">
+            <summary>
+            Determines the font size given the html font size
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.FontSizeFromHtml(System.Int32)">
+            <summary>
+            Determines the font size given the html int size
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.StyleSizeToHtml(System.String)">
+            <summary>
+            Determines the HtmlFontSize from a style attribute
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.IsStyleBold(System.String)">
+            <summary>
+            Determines if the style attribute is for Bold
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontConversion.IsStyleItalic(System.String)">
+            <summary>
+            Determines if the style attribute is for Italic
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlFontPropertyConverter">
+            <summary>
+            Expandable object converter for the HtmlFontProperty
+            Allows it to be viewable from the property browser
+            String format based on "Name, FontSize"
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.GetCreateInstanceSupported(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            Allows expansion sub property change to have string updated
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.CreateInstance(System.ComponentModel.ITypeDescriptorContext,System.Collections.IDictionary)">
+            <summary>
+            Creates a new HtmlFontProperty from a series of values
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Indicates if a conversion can take place from a HtmlFontProperty
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Performs the conversion from HtmlFontProperty to a string (only)
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Indicates if a conversion can take place from s string
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlFontPropertyConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Performs the conversion from string to a HtmlFontProperty (only)
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.HtmlTableProperty">
+            <summary>
+            Struct used to define a Html Table
+            Html Defaults are based on FrontPage default table
+            </summary>
+        </member>
+        <member name="M:BestCS.HtmlEditor.HtmlTableProperty.#ctor(System.Boolean)">
+            <summary>
+            Constructor defining a base table with default attributes
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.CommandGroup">
+            <summary>
+            Class defined for constant defintions realting to COM interop
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.HRESULT">
+            <summary>
+            HRESULT codes for COM Interop
+            Basic values and those used are defined
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.CommandOption">
+            <summary>
+            Command options for the web browser ExecWB and Exec commands
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.CommandId">
+            <summary>
+            Options that can be defined that affect the browser operations
+            Set through the use of the Exec command
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.OLECMD">
+            <summary>
+            OLECMD struct
+            </summary>
+        </member>
+        <member name="T:Pavonis.COM.IOleCommandTarget.IOleCommandTarget">
+            <summary>
+            IOleCommandTarget interface 
+            </summary>
+        </member>
+        <member name="T:BestCS.HtmlEditor.Properties.ProgRes">
+            <summary>
+              Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ResourceManager">
+            <summary>
+              Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.Culture">
+            <summary>
+              Перезаписывает свойство CurrentUICulture текущего потока для всех
+              обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.HtmlEditor">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarBold">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarCopy">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolBarCut">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarDelete">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFileOpen">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFileSave">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFind">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFontColor">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFontDown">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFontNormal">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFontStyle">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarFontUp">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarImage">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarItalic">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarJustifyCenter">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarJustifyLeft">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarJustifyRight">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarLine">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarListOrdered">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarListUnordered">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarPaste">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarPrint">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarProperties">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarRedo">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarTabInsert">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarTable">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarTabRemove">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarUnderline">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarUndo">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:BestCS.HtmlEditor.Properties.ProgRes.ToolbarWebLink">
+            <summary>
+              Поиск локализованного ресурса типа System.Drawing.Bitmap.
+            </summary>
+        </member>
+    </members>
+</doc>
