@@ -1,0 +1,39 @@
+System.ArgumentNullException не обработано
+  HResult=-2147467261
+  Message=Значение не может быть неопределенным.
+Имя параметра: uriString
+  ParamName=uriString
+  Source=System
+  StackTrace:
+       в System.Uri..ctor(String uriString)
+       в WBrowser.WBrowser.addNewTab(String addr) в d:\BestCSX\DocServer\SorceProjects\WBrowser\Forms\WBrowser.cs:строка 650
+       в WBrowser.WBrowser.Form1_Load(Object sender, EventArgs e) в d:\BestCSX\DocServer\SorceProjects\WBrowser\Forms\WBrowser.cs:строка 188
+       в System.Windows.Forms.Form.OnLoad(EventArgs e)
+       в System.Windows.Forms.Form.OnCreateControl()
+       в System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+       в System.Windows.Forms.Control.CreateControl()
+       в System.Windows.Forms.Control.WmShowWindow(Message& m)
+       в System.Windows.Forms.Control.WndProc(Message& m)
+       в System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+       в System.Windows.Forms.Form.WmShowWindow(Message& m)
+       в System.Windows.Forms.Form.WndProc(Message& m)
+       в System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+       в System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+       в System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+       в System.Windows.Forms.SafeNativeMethods.ShowWindow(HandleRef hWnd, Int32 nCmdShow)
+       в System.Windows.Forms.Control.SetVisibleCore(Boolean value)
+       в System.Windows.Forms.Form.SetVisibleCore(Boolean value)
+       в System.Windows.Forms.Control.set_Visible(Boolean value)
+       в System.Windows.Forms.Application.ThreadContext.RunMessageLoopInner(Int32 reason, ApplicationContext context)
+       в System.Windows.Forms.Application.ThreadContext.RunMessageLoop(Int32 reason, ApplicationContext context)
+       в System.Windows.Forms.Application.Run(Form mainForm)
+       в WBrowser.Program.Main() в d:\BestCSX\DocServer\SorceProjects\WBrowser\Program.cs:строка 29
+       в System.AppDomain._nExecuteAssembly(RuntimeAssembly assembly, String[] args)
+       в System.AppDomain.ExecuteAssembly(String assemblyFile, Evidence assemblySecurity, String[] args)
+       в Microsoft.VisualStudio.HostingProcess.HostProc.RunUsersAssembly()
+       в System.Threading.ThreadHelper.ThreadStart_Context(Object state)
+       в System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+       в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+       в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+       в System.Threading.ThreadHelper.ThreadStart()
+  InnerException: 

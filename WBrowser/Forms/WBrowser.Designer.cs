@@ -96,6 +96,7 @@
             this.settingsTSMItem = new System.Windows.Forms.ToolStripMenuItem();
             this.powerShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.htmlEditorTSMItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.докГенераторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.browserTabControl = new System.Windows.Forms.TabControl();
             this.closeTabContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeTabToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -656,7 +656,8 @@
             this.calendarTSMItem,
             this.settingsTSMItem,
             this.powerShellToolStripMenuItem,
-            this.htmlEditorTSMItem});
+            this.htmlEditorTSMItem,
+            this.докГенераторToolStripMenuItem});
             this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
             this.toolToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.toolToolStripMenuItem.Text = "Инструменты";
@@ -717,6 +718,13 @@
             this.htmlEditorTSMItem.Size = new System.Drawing.Size(172, 22);
             this.htmlEditorTSMItem.Text = "Редактор Html";
             this.htmlEditorTSMItem.Click += new System.EventHandler(this.редакторHtmlToolStripMenuItem_Click);
+            // 
+            // докГенераторToolStripMenuItem
+            // 
+            this.докГенераторToolStripMenuItem.Name = "докГенераторToolStripMenuItem";
+            this.докГенераторToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.докГенераторToolStripMenuItem.Text = "ДокГенератор";
+            this.докГенераторToolStripMenuItem.Click += new System.EventHandler(this.докГенераторToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -800,6 +808,7 @@
             this.img.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.img.Name = "img";
             this.img.Size = new System.Drawing.Size(23, 35);
+            this.img.Click += new System.EventHandler(this.img_Click);
             // 
             // adrBarTextBox
             // 
@@ -883,6 +892,7 @@
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
             this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 35);
             this.toolStripSplitButton1.Text = "Поиск";
+            this.toolStripSplitButton1.ButtonClick += new System.EventHandler(this.toolStripSplitButton1_ButtonClick);
             // 
             // googleSearch
             // 
@@ -913,8 +923,7 @@
             this.statusStrip1.ContextMenuStrip = this.toolBarContextMenu;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.toolStripProgressBar1,
-            this.toolStripStatusLabel2});
+            this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 386);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -925,22 +934,18 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(486, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(790, 17);
             this.toolStripStatusLabel1.Spring = true;
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Text = "Обозреватель Интернета ВЕБ-ПРО100Р приветствует Вас!";
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripProgressBar1
             // 
+            this.toolStripProgressBar1.Maximum = 1000000;
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar1.Step = 5;
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(202, 17);
-            this.toolStripStatusLabel2.Text = "                                                                 ";
+            this.toolStripProgressBar1.Step = 1;
+            this.toolStripProgressBar1.Visible = false;
             // 
             // browserTabControl
             // 
@@ -1359,8 +1364,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;        
         private System.Windows.Forms.TabControl browserTabControl;
         private System.Windows.Forms.TabPage NewTab;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -1476,6 +1480,7 @@
         private System.Windows.Forms.Label pageDocName;
         private System.Windows.Forms.ToolStripMenuItem powerShellToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem htmlEditorTSMItem;
+        private System.Windows.Forms.ToolStripMenuItem докГенераторToolStripMenuItem;
     }
 }
 

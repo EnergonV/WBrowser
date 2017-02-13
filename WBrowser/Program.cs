@@ -4,9 +4,16 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using CommonMark.Syntax;
+using System.Security.Permissions;
+
 
 namespace WBrowser
 {
+	[PermissionSetAttribute(SecurityAction.LinkDemand, Name = "FullTrust")]
+   [HostProtectionAttribute(SecurityAction.LinkDemand, SharedState = true, 
+	Synchronization = true, ExternalProcessMgmt = true, SelfAffectingProcessMgmt = true)]
+   [PermissionSetAttribute(SecurityAction.InheritanceDemand, Name = "FullTrust")]
+
     static class Program
     {
 	
@@ -17,7 +24,7 @@ namespace WBrowser
         static void Main()
         {
           Application.EnableVisualStyles();
-          Application.SetCompatibleTextRenderingDefault(false);
+          Application.SetCompatibleTextRenderingDefault(true);
 		  Application.SetUnhandledExceptionMode(UnhandledExceptionMode.Automatic);
           Application.Run(new WBrowser(Environment.GetCommandLineArgs()));
         }

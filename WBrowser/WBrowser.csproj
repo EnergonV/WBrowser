@@ -19,6 +19,22 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -31,9 +47,10 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DebugSymbols>True</DebugSymbols>
     <DebugType>Full</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>..\bin\</OutputPath>
@@ -43,9 +60,6 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>xTerraIcons_32.ico</ApplicationIcon>
@@ -62,7 +76,6 @@
     <DebugType>Full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -72,14 +85,28 @@
     <DebugType>None</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BestCS.HtmlEditor">
+      <HintPath>..\..\BestCS.HtmlEditor.dll</HintPath>
+    </Reference>
     <Reference Include="BestCS.MarkDown">
-      <HintPath>Packages\BestCS.MarkDown.dll</HintPath>
+      <HintPath>..\..\BestCS.MarkDown.dll</HintPath>
+    </Reference>
+    <Reference Include="BestCS.WFComponents">
+      <HintPath>..\..\BestCS.WFComponents.dll</HintPath>
     </Reference>
     <Reference Include="HTMLEditor">
-      <HintPath>Packages\HtmlEditor\HTMLEditor.exe</HintPath>
+      <HintPath>..\..\HTMLEditor.exe</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -144,6 +171,9 @@
     <None Include="Icons\Google.ico" />
     <None Include="Icons\Search.ico" />
     <None Include="Icons\Thumbs.db" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
@@ -197,6 +227,7 @@
     <None Include="Resources\xTerraIcons_32.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocServer.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +258,12 @@
     <Compile Include="Forms\DeleteBrowsingHistory.Designer.cs">
       <DependentUpon>DeleteBrowsingHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DocGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DocGenerator.Designer.cs">
+      <DependentUpon>DocGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InternetOption.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +286,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Res.Designer.cs">
       <DependentUpon>Res.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -264,6 +303,11 @@
     <Compile Include="Forms\RenameLink.Designer.cs">
       <DependentUpon>RenameLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Forms\WBrowser.cs">
       <SubType>Form</SubType>
@@ -271,6 +315,24 @@
     <Compile Include="Forms\WBrowser.Designer.cs">
       <DependentUpon>WBrowser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shell\Command.cs" />
+    <Compile Include="Shell\CommandLineSyntax.cs" />
+    <Compile Include="Shell\CommandResult.cs" />
+    <Compile Include="Shell\Constants.cs" />
+    <Compile Include="Shell\ErrorExitCodeException.cs" />
+    <Compile Include="Shell\ExceptionHelpers.cs" />
+    <Compile Include="Shell\Helpers.cs" />
+    <Compile Include="Shell\IoCommand.cs" />
+    <Compile Include="Shell\Log.cs" />
+    <Compile Include="Shell\PipedCommand.cs" />
+    <Compile Include="Shell\ProcessCommand.cs" />
+    <Compile Include="Shell\Shell.cs" />
+    <Compile Include="Shell\Streams\InternalProcessStreamReader.cs" />
+    <Compile Include="Shell\Streams\Pipe.cs" />
+    <Compile Include="Shell\Streams\PipeHelpers.cs" />
+    <Compile Include="Shell\Streams\ProcessStreamReader.cs" />
+    <Compile Include="Shell\Streams\ProcessStreamWriter.cs" />
+    <Compile Include="Shell\WindowsCommandLineSyntax.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\About.resx">
@@ -287,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DeleteBrowsingHistory.resx">
       <DependentUpon>DeleteBrowsingHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DocGenerator.resx">
+      <DependentUpon>DocGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InternetOption.resx">
       <DependentUpon>InternetOption.cs</DependentUpon>
@@ -314,6 +379,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\lake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Documenter\DocNet.csproj">
+      <Project>{8dab6dda-2038-400d-b3da-86ce41627a0f}</Project>
+      <Name>DocNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

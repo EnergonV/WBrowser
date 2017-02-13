@@ -21,7 +21,7 @@ using System.Security.Permissions;
 
 namespace WBrowser
 {
-    [ComVisibleAttribute(true)]
+    [ComVisibleAttribute(false)]
     [ClassInterfaceAttribute(ClassInterfaceType.AutoDispatch)]
     [DockingAttribute(DockingBehavior.AutoDock)]
     [PermissionSetAttribute(SecurityAction.LinkDemand, Name = "FullTrust")]
@@ -29,7 +29,7 @@ namespace WBrowser
     public partial class WBrowser : Form
     {
 
-    	public static String favXml = Application.StartupPath+@"\data\favorits.xml", linksXml = Application.StartupPath+@"\links.xml";
+    	public static String favXml = Application.StartupPath+@"\data\favorits.xml", linksXml = Application.StartupPath+@"\data\links.xml";
         String settingsXml=Application.StartupPath+@"\data\settings.xml", historyXml=Application.StartupPath+@"\data\history.xml";
         List<String> urls = new List<String>();
         XmlDocument settings = new XmlDocument();
@@ -38,8 +38,21 @@ namespace WBrowser
        public static HtmlEditorForm hedit;
         string  name;
 		string[] args;
-        private string address = "http://localhost";
-		
+        string theAddress = "about:blank";
+        DocServer docServer;
+		bool pageIsLoaded;
+        
+		public string Address
+        {
+            set
+            {
+                theAddress = value;
+            }
+            get
+            {
+                return theAddress;
+            }
+        }
 		
 		public string DocumentText
 		{
@@ -56,10 +69,10 @@ namespace WBrowser
 
 	   
 	   
-        public WBrowser()
+        public  WBrowser()
         {
             InitializeComponent();
-            currentCulture = CultureInfo.CurrentCulture; 
+            currentCulture = CultureInfo.CurrentCulture;					
 			
         }
         
@@ -68,17 +81,15 @@ namespace WBrowser
         {
             InitializeComponent();
             currentCulture = CultureInfo.CurrentCulture;
-            address = url;
+            this.Address = url;
         }
 
 		public WBrowser(string[] args)
 		{
-			// = Environment.GetCommandLineArgs();
-
 			InitializeComponent();
 			this.args = args;
             currentCulture = CultureInfo.CurrentCulture;
-			string filePath = Application.StartupPath+@"\data";		
+			string filePath = Application.StartupPath+@"\data";				
 		
 				//Проверка наличия папки для данных			
 				try
@@ -87,11 +98,12 @@ namespace WBrowser
 				   }
 				catch (IOException ex)
 				{
-					MessageBox.Show("В процессе конвертации произошла ошибка: "+ex.Message,"Неудачная Операция",MessageBoxButtons.OK ,MessageBoxIcon.Warning);
+					MessageBox.Show("В процессе преобразования произошла ошибка: "+ex.Message,"Неудачная Операция",MessageBoxButtons.OK ,MessageBoxIcon.Warning);
 			    } 
+
 			}
 		
-		
+			
         #region Form load/Closing/Closed
 
         //visible items
@@ -124,7 +136,7 @@ namespace WBrowser
                 r.AppendChild(el);
 
                  el = settings.CreateElement("homepage");
-                el.InnerText="about:blank";
+                el.InnerText="http://localhost:81";
                 r.AppendChild(el);
 
                 el = settings.CreateElement("dropdown");
@@ -149,44 +161,48 @@ namespace WBrowser
             //splashScreenToolStripMenuItem.Checked = (settings.DocumentElement.ChildNodes[4].Attributes[0].Value.Equals("True"));
             homePage = settings.DocumentElement.ChildNodes[4].InnerText;
         }
-        // загрузка главной формы с участием сплэшскрина
+		
+		
+		
+		 // загрузка главной формы
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             comboBox1.SelectedItem = comboBox1.Items[0];
-            setVisibility();   
-			  
+            setVisibility();
+			docServer = new DocServer();
+            this.toolStripStatusLabel1.Text = docServer.Start();
 
-			  //	Проверка наличия аргументов и их обработка  		
-		if(args != null && args.Length > 1)
-		{
-				for (int i = 0; i < this.args.Length; i++)	   
-				{
-					string arg = this.args[i];
-					if(File.Exists(arg) && Application.ExecutablePath != arg)
-					{		
-						if (arg.EndsWith(".md"))  
-						{	
-						var text = loadMDFile(arg);
-						address = string.Format("file:///{0}", arg);
-						addNewTab(address);		
-						pageDocName.Visible = true;
-						pageDocName.Text = "Файл: " +	string.Format("file:///{0}", arg);					 
-						this.getCurrentBrowser().DocumentText = text;			
-						}							
-						else
-						{
-							address = string.Format("file:///{0}", arg);
-							addNewTab(address);								
-						}
-						 
-					}												
-				}
-		}
-		else{ addNewTab(address);}		
 
-		 
-            this.toolStripStatusLabel1.Text = "Готово";
+            //	Проверка наличия аргументов и их обработка  		
+            if (args != null && args.Length > 1)
+            {
+                for (int i = 0; i < this.args.Length; i++)
+                {
+                    string arg = this.args[i];
+                    if (File.Exists(arg) && Application.ExecutablePath != arg)
+                    {
+                        if (arg.EndsWith(".md"))
+                        {
+                            var text = loadMDFile(arg);
+                            Address = string.Format("file:///{0}", arg);
+                            addNewTab(Address);
+                            pageDocName.Visible = true;
+                            pageDocName.Text = "Файл: " + string.Format("file:///{0}", arg);
+                            this.getCurrentBrowser().DocumentText = text;
+                        }
+                        else
+                        {
+                            Address = string.Format("file:///{0}", arg);
+                            addNewTab(Address);
+                        }
+
+                    }
+                }
+            }
+            else { addNewTab(Address); }
+
+           // this.toolStripStatusLabel1.Text = "Готово";
 			/*
 		 //
 	    // The simplest overload of MessageBox.Show. [1]
@@ -251,6 +267,7 @@ namespace WBrowser
         //form closing
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+			docServer.Stop();
             if (browserTabControl.TabCount != 2)
             {
                 DialogResult dlg_res = (new Close()).ShowDialog();
@@ -263,8 +280,8 @@ namespace WBrowser
         //form closed
         private void WBrowser_FormClosed(object sender, FormClosedEventArgs e)
         {
-            settings.Save(settingsXml);
-           // File.Delete("source.txt");
+            settings.Save(settingsXml);			
+           
         }
 
          #endregion
@@ -342,15 +359,15 @@ namespace WBrowser
         private void deleteLink()
         {
              if (favoritesPanel.Visible == true)
-                favTreeView.Nodes[0].Nodes[address].Remove();
+                favTreeView.Nodes[0].Nodes[Address].Remove();
              if (linkBar.Visible == true)
-                 linkBar.Items.RemoveByKey(address);
+                 linkBar.Items.RemoveByKey(Address);
             XmlDocument myXml = new XmlDocument();
             myXml.Load(linksXml);
             XmlElement root = myXml.DocumentElement;
             foreach (XmlElement x in root.ChildNodes)
             {
-                if (x.GetAttribute("url").Equals(address))
+                if (x.GetAttribute("url").Equals(Address))
                 {
                     root.RemoveChild(x);
                     break;
@@ -376,9 +393,9 @@ namespace WBrowser
                     }
                 }
                 if(linkBar.Visible==true)
-                  linkBar.Items[address].Text = rl.newName.Text;
+                  linkBar.Items[Address].Text = rl.newName.Text;
                 if(favoritesPanel.Visible==true)
-                favTreeView.Nodes[0].Nodes[address].Text = rl.newName.Text;
+                favTreeView.Nodes[0].Nodes[Address].Text = rl.newName.Text;
                 myXml.Save(linksXml);
             }
             rl.Close();
@@ -393,7 +410,7 @@ namespace WBrowser
             XmlElement root = myXml.DocumentElement;
             foreach (XmlElement x in root.ChildNodes)
             {
-                if (x.GetAttribute("url").Equals(address))
+                if (x.GetAttribute("url").Equals(Address))
                 {
                     root.RemoveChild(x);
                     break;
@@ -419,7 +436,7 @@ namespace WBrowser
                         break;
                     }
                 }
-                favTreeView.Nodes[address].Text = rl.newName.Text;
+                favTreeView.Nodes[Address].Text = rl.newName.Text;
                 myXml.Save(favXml);
             }
             rl.Close();
@@ -446,7 +463,7 @@ namespace WBrowser
                     }
                     catch (CommonMark.CommonMarkException ex)
                     {                        
-                       MessageBox.Show("В процессе конвертации произошла ошибка: "+ex.Message,"Неудачная Операция",MessageBoxButtons.OK ,MessageBoxIcon.Warning);
+                       MessageBox.Show("В процессе преобразования произошла ошибка: "+ex.Message,"Неудачная Операция",MessageBoxButtons.OK ,MessageBoxIcon.Warning);
 					   Application.ExitThread();
                     }
                 }
@@ -458,8 +475,9 @@ namespace WBrowser
 		}
 
         /// <summary>
-        /// addHistory method.
+        /// Метод для записи истории посещений веб-страниц.
         /// </summary>
+        
         private void addHistory(Uri url,string data)
         {
             XmlDocument myXml = new XmlDocument();
@@ -467,6 +485,11 @@ namespace WBrowser
             XmlElement el = myXml.CreateElement("item");
             el.SetAttribute("url", url.ToString());
             el.SetAttribute("lastVisited", data);
+
+            if((url.ToString()).StartsWith("http://localhost:81/"))
+            {
+                return;
+            }
 
             if (!File.Exists(historyXml))
             {
@@ -561,6 +584,7 @@ namespace WBrowser
             } 
             myXml.Save(historyXml);
         }
+
 //удалить историю
         private void deleteHistory()
         {
@@ -569,7 +593,7 @@ namespace WBrowser
             XmlElement root = myXml.DocumentElement;
             foreach (XmlElement x in root.ChildNodes)
             {
-                if (x.GetAttribute("url").Equals(address))
+                if (x.GetAttribute("url").Equals(Address))
                 {
                     root.RemoveChild(x);
                     break;
@@ -588,8 +612,6 @@ namespace WBrowser
 //дополнительно обрабатываемый переход браузера
 		private void Navigate(String address)
 		{
-            if (String.IsNullOrEmpty(address)) return;
-			if (address.Equals("about:blank")) return;
 			if (!address.StartsWith("file:///") &&!address.StartsWith("http://") &&
 				!address.StartsWith("https://"))
 			{
@@ -609,7 +631,8 @@ namespace WBrowser
                 if (getCurrentBrowser().DocumentTitle != "")
                 {
                     pageDocName.Visible = true;
-                    pageDocName.Text = "Сайт: " + getCurrentBrowser().DocumentTitle;
+                    pageDocName.Text = "Веб-страница: " + getCurrentBrowser().DocumentTitle;
+					this.toolStripStatusLabel1.Text = pageDocName.Text;
                 }
 				else pageDocName.Visible = false;	
 			while (getCurrentBrowser().ReadyState != WebBrowserReadyState.Complete)
@@ -620,8 +643,14 @@ namespace WBrowser
 		}
 
         //добавление новой вкладки
-        public void addNewTab(string address = "http://localhost")
+        public void addNewTab(string addr = "http://localhost:81")
         {
+			
+			if(addr == "http://localhost:81"||addr ==  "about:blank")
+            {
+            this.Address = "http://localhost:81";
+			}
+			
             TabPage tpage = new TabPage();
             tpage.BorderStyle = BorderStyle.Fixed3D;
             browserTabControl.TabPages.Insert(browserTabControl.TabCount - 1, tpage);
@@ -637,20 +666,23 @@ namespace WBrowser
             browser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(Form1_DocumentCompleted);
             browser.Navigating += new WebBrowserNavigatingEventHandler(Form1_Navigating);
             browser.CanGoBackChanged += new EventHandler(browser_CanGoBackChanged);
-            browser.CanGoForwardChanged += new EventHandler(browser_CanGoForwardChanged);
+            browser.CanGoForwardChanged += new EventHandler(browser_CanGoForwardChanged);		
+
+			
 			try
 			{
-				browser.Navigate(new Uri(address));
+				browser.Navigate(new Uri(this.Address));
 
             }
 			catch (System.UriFormatException ex)
 			{
-				throw ex;
+				//throw ex;
 			}
 			    if (browser.DocumentTitle != "")
                 {
-                    pageDocName.Visible = true;
-                    pageDocName.Text = "Сайт: " + browser.DocumentTitle;
+					pageDocName.Visible = true;
+					pageDocName.Text = "Сайт: " + browser.DocumentTitle;			
+
                 }
 				else pageDocName.Visible = false;
            
@@ -667,7 +699,7 @@ namespace WBrowser
         {
             WebBrowser currentBrowser = (WebBrowser)sender;//getCurrentBrowser();
 			currentBrowser.AllowNavigation = true;
-            this.toolStripStatusLabel1.Text = "Готово";
+            this.pageIsLoaded = true;
             String text = "Пустая Страница";
 
             if (!currentBrowser.Url.ToString().Equals("about:blank"))
@@ -689,7 +721,7 @@ namespace WBrowser
             if (!urls.Contains(currentBrowser.Url.Host.ToString()))
                 urls.Add(currentBrowser.Url.Host.ToString());
 
-            if (!currentBrowser.Url.ToString().Equals("about:blank") && currentBrowser.StatusText.Equals("Готово"))
+            if (!currentBrowser.Url.ToString().Equals("about:blank") && this.pageIsLoaded == true)
                 addHistory(currentBrowser.Url,DateTime.Now.ToString(currentCulture));
             
               if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath) 
@@ -699,9 +731,16 @@ namespace WBrowser
         //ProgressChanged    
         private void Form1_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
         {
-            if (e.CurrentProgress < e.MaximumProgress)
+            if (e.CurrentProgress < e.MaximumProgress&& e.CurrentProgress != (-1))
+			{				
                 toolStripProgressBar1.Value=(int)e.CurrentProgress;
-            else toolStripProgressBar1.Value = toolStripProgressBar1.Minimum;
+				toolStripProgressBar1.Visible = true;
+			}
+            else 
+			{
+				toolStripProgressBar1.Value = toolStripProgressBar1.Minimum;
+				toolStripProgressBar1.Visible = false;
+			}
 			
 		var webBrowser = (WebBrowser)sender;
 		if (webBrowser.Document != null)
@@ -734,30 +773,38 @@ namespace WBrowser
     {
         case MouseButtons.Left:
         {
-                        if (isOK != true)
-                        {
-                            if ((link.GetAttribute("target") != null) && (link.GetAttribute("target").ToLower() == "_blank") || e.ShiftKeyPressed || (e.MouseButtonsPressed == MouseButtons.Middle))
-                            {
-                                isOK = true;
-                                link.SetAttribute("target", "_self");
-                                addNewTab(link.GetAttribute("href"));                                
-                                //MessageBox.Show("link_MouseUp");
-                                break;
-                            }
 
-                            else
+                        try
+                        {
+                            if (isOK != true)
                             {
-                                isOK = true;
-                                Navigate(link.GetAttribute("href"));
-                                break;
+                                if ((link.GetAttribute("target") != null) && (link.GetAttribute("target").ToLower() == "_blank") && !this.Address.StartsWith("http://localhost/") || e.ShiftKeyPressed || (e.MouseButtonsPressed == MouseButtons.Middle))
+                                {
+                                    isOK = true;
+                                    link.SetAttribute("target", "_self");
+                                    addNewTab(link.GetAttribute("href"));
+
+                                    break;
+                                }
+
+                                else
+                                {
+                                    isOK = true;
+                                    Navigate(link.GetAttribute("href"));
+                                    break;
+                                }
                             }
                         }
+                        catch(Exception ex) { }
 		break;
            
         }
         case MouseButtons.Right:
         {
-          // linkContextMenu.Show(MousePosition);
+                        //В этом месте происходит накладка двух контекстных меню.
+                        //Нужно лишнее из них сделать невидимым.
+
+          //linkContextMenu.Show(MousePosition);
             break;
         }
     }
@@ -765,6 +812,7 @@ namespace WBrowser
         //Navigating
         private void Form1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
+			this.pageIsLoaded = false;
             this.toolStripStatusLabel1.Text = getCurrentBrowser().StatusText;		
 
         }
@@ -812,7 +860,7 @@ namespace WBrowser
                 addNewTab(getCurrentBrowser().Url.ToString());   
 			//MessageBox.Show("closeTabToolStripMenuItem1_Click1");				
             }
-            else addNewTab(address);
+            else addNewTab(Address);
 			//MessageBox.Show("closeTabToolStripMenuItem1_Click2");	
         }
         #endregion
@@ -1133,7 +1181,7 @@ namespace WBrowser
         private void b_MouseUp(object sender, MouseEventArgs e)
         {
             ToolStripButton b = (ToolStripButton)sender;
-            address = b.ToolTipText;
+            Address = b.ToolTipText;
             name = b.Text;
 
             if (e.Button == MouseButtons.Right)
@@ -1154,12 +1202,12 @@ namespace WBrowser
         //открыть
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Navigate(address);
+            Navigate(Address);
         }
         //открыть в новой вкладке
         private void openInNewTabToolStripMenuItem_Click(object sender, EventArgs e)
         {
-		   addNewTab(address);
+		   addNewTab(Address);
            //Navigate(address);
 
         }
@@ -1168,7 +1216,7 @@ namespace WBrowser
         {
             WBrowser new_form = new WBrowser();
             new_form.Show();
-            new_form.Navigate(address);
+            new_form.Navigate(Address);
         }
                      /*LINK CONTEXT MENU*/
         //удалить ссылку
@@ -1273,7 +1321,7 @@ namespace WBrowser
             if (e.Button == MouseButtons.Right)
             {
                 favTreeView.SelectedNode = e.Node;
-                address = e.Node.ToolTipText;
+                Address = e.Node.ToolTipText;
                 name = e.Node.Text;
             }
             else
@@ -1373,7 +1421,7 @@ namespace WBrowser
             if (e.Button == MouseButtons.Right)
             {
                 historyTreeView.SelectedNode = e.Node;
-                address = e.Node.Text;
+                Address = e.Node.Text;
             }
             else
                 if (!comboBox1.Text.Equals("Посещённые Сегодня Упорядоченно"))
@@ -1839,7 +1887,27 @@ namespace WBrowser
         {
             (new About(false)).Show();
         }
-       private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            if (googleSearch.Checked == true)
+                Navigate("http://google.com/search?q=" + searchTextBox.Text);
+            else
+                Navigate("http://search.live.com/results.aspx?q=" + searchTextBox.Text);
+        }
+
+        private void img_Click(object sender, EventArgs e)
+        {
+            Navigate("http://localhost:81");
+        }
+
+        private void докГенераторToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           var dg = new DocGenerator();
+            dg.Show();
+        }
+
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Process.Start("mailto:dinruspro@mail.ru");
         }
